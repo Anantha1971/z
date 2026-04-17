@@ -1,0 +1,12 @@
+
+library(neuralnet)
+x1<-c(0,0,1,1)
+x2<-c(0,1,0,1)
+y<-c(0,1,1,0)
+data<-data.frame(x1,x2,y)
+model<-neuralnet(y~x1+x2,data=data,hidden=c(2),act.fct="logistic",linear.output=FALSE)
+predictions<-predict(model,data[,c("x1","x2")])$net.result
+rounded_preds<-round(predictions)
+print("Predictions:")
+print(rounded_preds)
+plot(model)
